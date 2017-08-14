@@ -4,10 +4,14 @@
 
 <form action="." method="post">
   {% csrf_token %}
-  <input type="radio" name="database" value="sqlite" checked> Sqlite <br>
-  <input type="radio" name="database" value="mysql"> MySql <br>
-  <input type="radio" name="database" value="psql"> Postgres
+  <input type="radio" name="db_type" value="sqlite" checked> Sqlite <br>
+  <input type="radio" name="db_type" value="mysql"> MySql <br>
+  <input type="radio" name="db_type" value="postgres"> Postgres
 <br><br>
+  Host:<br>
+  <input type="text" name="db_host" value="localhost"><br><br>
+  Port:<br>
+  <input type="text" name="db_port" value="3306"><br><br>
   Database name:<br>
   <input type="text" name="db_name" value=""><br><br>
   User:<br>

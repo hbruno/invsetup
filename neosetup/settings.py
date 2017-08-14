@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'neosetup.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-    'default': {},
+    'default': {} if env.get_value('DATABASE_URL', default=False) == False else env.db('DATABASE_URL'),
 }
 
 
