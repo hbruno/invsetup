@@ -1,0 +1,19 @@
+<h1>CONFIGURE DATABASE</h1>
+<p>Si vas a usar una DB que no sea sqlite acordate de instalar primero el engine que corresponda a la db.<br>
+  mysql o psycopg</p>
+
+<form action="." method="post">
+  {% csrf_token %}
+  <input type="radio" name="database" value="sqlite" checked> Sqlite <br>
+  <input type="radio" name="database" value="mysql"> MySql <br>
+  <input type="radio" name="database" value="psql"> Postgres
+<br><br>
+  Database name:<br>
+  <input type="text" name="db_name" value=""><br><br>
+  User:<br>
+  <input type="text" name="db_user" value=""><br><br>
+  Password:<br>
+  <input type="text" name="db_pass" value="">
+<br><br>
+  <button type="submit">Next</button>
+</form>

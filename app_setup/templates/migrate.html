@@ -1,0 +1,17 @@
+<h1>DATABASE CONFIGURED.</h1>
+<h2>running migrations ... </h2>
+
+<h4>Output</h4>
+<div style="background-color: black; color: green; margin: 10px 20px; padding: 20px;">
+  {{ out | safe }}
+</div>
+
+<h4>Error</h4>
+<div style="background-color: black; color: green; margin: 10px 20px; padding: 20px;">
+  {{ err | safe }}
+</div>
+
+<form action="." method="post">
+  {% csrf_token %}
+  <button type="submit">Done</button>
+</form>
