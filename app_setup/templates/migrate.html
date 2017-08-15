@@ -1,17 +1,29 @@
+{% extends 'setup_base.html' %}
+
+{% block content %}
 <h1>DATABASE CONFIGURED.</h1>
 <h2>running migrations ... </h2>
 
-<h4>Output</h4>
-<div style="background-color: black; color: green; margin: 10px 20px; padding: 20px;">
+{% if out %}
+<div class="bs-callout bs-callout-info"> 
+    <h4>Success</h4>
+</div>
+<div style="background-color: black; color: green; padding: 20px; margin-bottom: 20px;">
   {{ out | safe }}
 </div>
+{% endif %}
 
-<h4>Error</h4>
-<div style="background-color: black; color: green; margin: 10px 20px; padding: 20px;">
+{% if err %}
+<div class="bs-callout bs-callout-danger"> 
+    <h4>Error</h4>
+</div>
+<div style="background-color: black; color: green; padding: 20px; margin-bottom: 20px;">
   {{ err | safe }}
 </div>
+{% endif %}
 
 <form action="." method="post">
   {% csrf_token %}
-  <button type="submit">Done</button>
+  <button class="btn btn-primary" type="submit">Done</button>
 </form>
+{% endblock %}      

@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url
 from app_main.views import MainView
-from app_setup.views import SetupView, MigrateView
+from app_setup.views import SetupView, MigrateView, FixtureView
 
 
 urlpatterns = [
     url(r'^$', MainView.as_view()),
+    url(r'^setup/fixture/$', FixtureView.as_view()),
     url(r'^setup/migrate/$', MigrateView.as_view()),
     url(r'^setup/$', SetupView.as_view()),
 ]
