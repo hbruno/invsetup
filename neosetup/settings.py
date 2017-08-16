@@ -42,9 +42,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'crispy_forms',
+
     'app_main',
     'app_setup',
 ]
+
+# See: http://django-crispy-forms.readthedocs.org/en/latest/install.html#template-packs
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -112,3 +117,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 SETUP_COMPLETED = env.bool('SETUP_COMPLETED', default=False)
+NEO_CENTRAL_HOST = env.str('NEO_CENTRAL_HOST', default='')
+NEO_CENTRAL_PORT = env.str('NEO_CENTRAL_PORT', default='')
+NEO_PROXY_ALIAS = env.str('NEO_PROXY_ALIAS', default='')

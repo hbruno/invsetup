@@ -1,0 +1,29 @@
+{% extends 'setup_base.html' %}
+
+{% block content %}
+<h1 class="page-header">Configuring database</h1>
+<h2>Running migrations ... (Move to AJAX in next version) </h2>
+
+{% if out %}
+<div class="bs-callout bs-callout-info"> 
+    <h4>Success</h4>
+</div>
+<div style="background-color: black; color: green; padding: 20px; margin-bottom: 20px;">
+  {{ out | safe }}
+</div>
+{% endif %}
+
+{% if err %}
+<div class="bs-callout bs-callout-danger"> 
+    <h4>Error</h4>
+</div>
+<div style="background-color: black; color: green; padding: 20px; margin-bottom: 20px;">
+  {{ err | safe }}
+</div>
+{% endif %}
+
+<form action="." method="post">
+  {% csrf_token %}
+  <button class="btn btn-primary" type="submit">Configure admin user</button>
+</form>
+{% endblock %}      

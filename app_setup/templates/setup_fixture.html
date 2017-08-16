@@ -1,8 +1,8 @@
 {% extends 'setup_base.html' %}
 
 {% block content %}
-<h1>DATABASE CONFIGURED.</h1>
-<h2>running migrations ... </h2>
+<h1 class="page-header">Init database data</h1>
+<h2>Running fixtures ... (Move to AJAX in next version) </h2>
 
 {% if out %}
 <div class="bs-callout bs-callout-info"> 
@@ -22,8 +22,5 @@
 </div>
 {% endif %}
 
-<form action="." method="post">
-  {% csrf_token %}
-  <button class="btn btn-primary" type="submit">Done</button>
-</form>
+<a href="{% url 'setup:completed' %}" class="btn btn-primary" >Finish wizard</a>
 {% endblock %}      

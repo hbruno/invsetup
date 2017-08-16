@@ -99,4 +99,5 @@ ENV/
 
 # mypy
 .DS_Store
+db.sqlite3.original
 .mypy_cache/

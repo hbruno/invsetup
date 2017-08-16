@@ -1,0 +1,46 @@
+{% extends 'setup_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<h1 class="page-header">Configure your environment</h1>
+
+{% crispy form %}
+
+{% endblock %}
+
+
+{% block scripts %}
+<script type="text/javascript">
+  
+$(document).ready(function() {
+
+  $('input[name=engine]').on('change', function(ev) {
+    if ($(this).is(':checked')) {
+      $('fieldset.db input').val('')
+
+      if ($(this).val() === 'sqlite') {
+        $('fieldset.db input').closest('.form-group').hide()
+  
+        $('input[name=name]').closest('.form-group').show();
+        $('input[name=name]').val('db.sqlite3');
+      }
+      else {
+        $('fieldset.db input').closest('.form-group').show()
+      }
+
+      if ($(this).val() === 'mysql') {
+        $('input[name=host]').val('localhost')
+        $('input[name=port]').val('3306')
+      }
+    }
+  }) 
+
+  $('input[name=engine]').trigger('change');
+
+});
+
+</script>
+
+{% endblock %}                    
+

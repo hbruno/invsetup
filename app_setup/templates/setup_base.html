@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js" lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -11,13 +11,71 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.min.css" />
         <link rel="stylesheet" href="https://getbootstrap.com/docs/3.3/assets/css/docs.min.css" />
 
+        <style type="text/css">
+            footer {height: 40px; padding: 20px; font-size: 10px; color: gray;}
+            .progress { margin-bottom: 0; border-radius: 0; height: 5px }
+            .progress .progress-bar { background-image: none; background-color: orange }
+            form legend { border-bottom: 0; color: #ccc; }  
+            form .actions{ margin: 40px 0; }
+            h1.page-header { margin-top: 0; }
+            .nav-pills>li.active>a { background-color: orange; }
+            .btn.btn-primary { background-image: none; background-color: #4d90fe; border: none; border-radius: 0; padding: 12px; }
+        </style>
+
+        {% block styles %} {% endblock %}
     </head>
     <body>
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
+        <nav class="navbar navbar-inverse" style="border-radius: 0; background-image: none;">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <a class="navbar-brand" href="/setup"><img src="http://10.10.99.231:7000/static/img/invgate-logo.png" style="display: inline-block;"> Proxy Setup</a>
+            </div>
+          </div>  
+        </nav>        
+
         <div class="container">
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0;">
+                <span class="sr-only">60% Complete</span>
+              </div>
+            </div>
+
+            <div class="row wizard">
+                <div class="col-xs-12">
+                    <ul class="nav nav-pills nav-justified thumbnail">
+                        <li class="disabled {% if step == 1 %}active{% endif %}"><a href="#">
+                            <h4 class="list-group-item-heading">1. Welcome</h4>
+                            <p class="list-group-item-text">Install Requirements</p>
+                        </a></li>
+                        <li class="disabled {% if step == 2 %}active{% endif %}"><a href="#">
+                            <h4 class="list-group-item-heading">2. Environment</h4>
+                            <p class="list-group-item-text">General Configurations</p>
+                        </a></li>
+                        <li class="disabled {% if step == 3 %}active{% endif %}"><a href="#">
+                            <h4 class="list-group-item-heading">3. Database</h4>
+                            <p class="list-group-item-text">Apply Migrations</p>
+                        </a></li>
+                        <li class="disabled {% if step == 4 %}active{% endif %}"><a href="#">
+                            <h4 class="list-group-item-heading">4. Administration</h4>
+                            <p class="list-group-item-text">Set User</p>
+                        </a></li>
+                        <li class="disabled {% if step == 5 %}active{% endif %}"><a href="#">
+                            <h4 class="list-group-item-heading">5. Fixture</h4>
+                            <p class="list-group-item-text">Load Initial Data</p>
+                        </a></li>
+                        <li class="disabled {% if step == 6 %}active{% endif %}"><a href="#">
+                            <h4 class="list-group-item-heading">6. Completed</h4>
+                            <p class="list-group-item-text">Done :)</p>
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
+
             {% if messages %}
             <div class="bs-callout bs-callout-danger"> 
                 <h4>Error:</h4> 
@@ -26,12 +84,20 @@
                 {% endfor %}
             </div>
             {% endif %}
+
             {% block content %}{% endblock %}                    
         </div>
+        <footer>
+            <p class="text-right"> &copy; Proxy Setup {% now 'Y'%}. </p>
+        </footer>
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-        {% block scripts %}{% endblock %}                    
-
-
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var progress = (({{step}} * 100) / 6) + '%';
+                $('.progress-bar').animate({width: progress}, 500);
+            })
+        </script>
+        {% block scripts %}{% endblock %}
     </body>
 </html>

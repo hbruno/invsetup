@@ -1,4 +1,16 @@
-<h1>MAIN</h1>
+{% extends 'setup_base.html' %}
 
+{% block styles %} 
+<style type="text/css">
+    .container .progress { display: none; }
+    .container .wizard { display: none; }
+</style>
+{% endblock %}
 
-<h3>Total: {{ total }}</h3>
+{% block content %}
+<div class="jumbotron">
+  <h1>Welcome to your Steg!</h1>
+  <p>Your steg is configured and ready to start </p>
+  <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+</div>
+{% endblock %}
